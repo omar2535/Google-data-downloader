@@ -10,10 +10,11 @@ class EmailParser:
     def get_to(self, msg):
         return msg['to']
 
-    # TODO: get body contents
     def get_body(self, msg):
+        total_payload = ""
         if msg.is_multipart():
             for load in msg.get_payload():
-                pass
+                total_payload += load
         else:
-            return msg.get_payload()
+            total_payload += msg.get_payload()
+        return total_payload
