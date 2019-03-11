@@ -10,8 +10,12 @@ def main():
     message_util = MessageUtils()
     mail_parser = EmailParser()
     
-    messages = message_util.list_messages_matching_query('me', google_service, 'important')
+    messages = message_util.list_messages_matching_query(
+        'me', google_service, 'Paid internship position for web development')
     
+    breakpoint()
+    message_util.get_attachments_from_message(google_service, 'me', messages[5]['id'], '')
+
     
 
     breakpoint()

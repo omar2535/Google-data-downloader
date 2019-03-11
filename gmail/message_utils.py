@@ -1,6 +1,7 @@
 from apiclient import errors
 import base64
 import email
+import pdb
 
 class MessageUtils:
     def list_messages_matching_query(self, user_id, service, query=''):
@@ -108,9 +109,10 @@ class MessageUtils:
             msg_id: ID of Message containing attachment.
             store_dir: The directory used to store attachments.
         """
+        breakpoint()
         try:
             message = service.users().messages().get(userId=user_id, id=msg_id).execute()
-
+            breakpoint()
             for part in message['payload']['parts']:
                 if(part['filename']):
 
@@ -118,7 +120,7 @@ class MessageUtils:
                                                         .encode('UTF-8'))
 
                     path = ''.join([store_dir, part['filename']])
-
+                    breakpoint()
                     f = open(path, 'w')
                     f.write(file_data)
                     f.close()
